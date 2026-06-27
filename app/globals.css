@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --font-sans: "Helvetica Neue", Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-  --font-serif: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --font-sans: "Noto Sans JP", "Helvetica Neue", Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  --font-serif: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", "Times New Roman", serif;
   color-scheme: light;
 }
 
@@ -24,7 +24,7 @@ body {
 }
 
 .section-shell {
-  @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  @apply mx-auto w-full max-w-[1180px] px-5 sm:px-8;
 }
 
 .hairline {

@@ -4,9 +4,9 @@ export function SectionHeading({ eyebrow, title, body, light = false }: { eyebro
   return (
     <div className="mx-auto max-w-3xl text-center">
       {eyebrow ? <p className={`mb-3 text-xs font-semibold uppercase tracking-[0.3em] ${light ? "text-white/60" : "text-navy-500"}`}>{eyebrow}</p> : null}
-      <h2 className={`font-serif text-2xl leading-relaxed tracking-[0.06em] sm:text-4xl sm:leading-tight sm:tracking-[0.12em] ${light ? "text-white" : "text-navy-900"}`}>{title}</h2>
+      <h2 className={`font-serif text-2xl leading-relaxed tracking-[0.12em] sm:text-[2rem] sm:leading-tight sm:tracking-[0.16em] ${light ? "text-white" : "text-navy-900"}`}>{title}</h2>
       <div className={`mx-auto my-5 h-px w-24 ${light ? "bg-white/50" : "hairline"}`} />
-      {body ? <p className={`text-sm leading-8 sm:text-base ${light ? "text-white/75" : "text-ink/70"}`}>{body}</p> : null}
+      {body ? <p className={`text-sm font-medium leading-8 ${light ? "text-white/75" : "text-navy-900/75"}`}>{body}</p> : null}
     </div>
   );
 }
