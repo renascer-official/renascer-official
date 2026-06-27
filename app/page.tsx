@@ -58,24 +58,24 @@ const services = [
 
 const flow = [
   {
-    icon: "current-state",
+    icon: "file-search",
     number: "01",
     title: "現状整理",
     body: "ヒアリングを通じて、現状と課題を整理します。",
   },
   {
-    icon: "strategy-design",
+    icon: "target",
     number: "02",
     title: "戦略設計",
     body: "最適な戦略と実行計画を設計します。",
   },
   {
-    icon: "execution",
+    icon: "rocket",
     number: "03",
     title: "実行支援",
     body: "改善・定着まで伴走します。",
   },
-] satisfies Array<{ icon: AssetIconName; number: string; title: string; body: string }>;
+] satisfies Array<{ icon: FlowIconName; number: string; title: string; body: string }>;
 
 const strengths = [
   {
@@ -111,6 +111,49 @@ function RoundIcon({ type, light = false }: { type: AssetIconName; light?: boole
     <span className={`mx-auto flex h-[78px] w-[78px] items-center justify-center rounded-full border p-[18px] ${light ? "border-white/65" : "border-navy-900/25"}`}>
       <AssetIcon type={type} light={light} className="h-full w-full" />
     </span>
+  );
+}
+
+type FlowIconName = "file-search" | "target" | "rocket";
+
+function FlowIcon({ type }: { type: FlowIconName }) {
+  const common = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.9,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+
+  return (
+    <svg viewBox="0 0 64 64" className="h-full w-full" aria-hidden="true">
+      {type === "file-search" ? (
+        <>
+          <path d="M20 10h18l10 10v19" {...common} />
+          <path d="M38 10v11h10" {...common} />
+          <path d="M20 10v44h17" {...common} />
+          <path d="M27 29h13M27 36h9" {...common} />
+          <circle cx="43" cy="44" r="8" {...common} />
+          <path d="m49 50 6 6" {...common} />
+        </>
+      ) : null}
+      {type === "target" ? (
+        <>
+          <circle cx="31" cy="34" r="18" {...common} />
+          <circle cx="31" cy="34" r="10" {...common} />
+          <circle cx="31" cy="34" r="3" {...common} />
+          <path d="M43 22 55 10M49 10h6v6" {...common} />
+        </>
+      ) : null}
+      {type === "rocket" ? (
+        <>
+          <path d="M37 13c7-3 12-3 15-1 2 3 2 8-1 15L37 41 23 27z" {...common} />
+          <path d="M23 27 14 30l9 5M37 41l-3 9-5-9" {...common} />
+          <circle cx="42" cy="22" r="4" {...common} />
+          <path d="M21 43c-4 1-7 4-8 8 4-1 7-4 8-8z" {...common} />
+        </>
+      ) : null}
+    </svg>
   );
 }
 
@@ -209,7 +252,7 @@ export default function Home() {
                   <div className="flex items-start justify-between gap-4">
                     <span className="font-serif text-[2rem] font-semibold tracking-[0.16em] text-navy-900">{item.number}</span>
                     <span className="h-12 w-12 text-navy-700">
-                      <AssetIcon type={item.icon} className="h-full w-full" />
+                      <FlowIcon type={item.icon} />
                     </span>
                   </div>
                   <h3 className="mt-4 font-serif text-xl font-semibold tracking-[0.16em] text-navy-900">{item.title}</h3>
