@@ -31,7 +31,7 @@ export default function ContactPage() {
             <div className="grid gap-5 sm:grid-cols-2">
               <label className={labelClass}>
                 会社名
-                <input className={fieldClass} placeholder="株式会社サンプル" />
+                <input className={fieldClass} placeholder="貴社名・屋号" />
               </label>
               <label className={labelClass}>
                 お名前
