@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     locale: "ja_JP",
   },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
   metadataBase: new URL("https://renascer.jp"),
 };
