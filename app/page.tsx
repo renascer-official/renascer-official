@@ -1,91 +1,115 @@
 import Link from "next/link";
 import { Fragment } from "react";
 import { ArrowMotif } from "@/components/ArrowMotif";
-import { LucideLineIcon, type IconName } from "@/components/LucideLineIcon";
 import { ButtonLink, SectionHeading } from "@/components/Section";
+
+type AssetIconName =
+  | "adversity"
+  | "strategy-win"
+  | "accompany"
+  | "sales"
+  | "dx-ai"
+  | "alliance"
+  | "current-state"
+  | "strategy-design"
+  | "execution"
+  | "owner-distance"
+  | "onsite"
+  | "long-term";
 
 const growth = [
   {
-    icon: "file-search",
+    icon: "adversity",
     title: "逆境の整理",
     body: "現状と課題を多角的に分析し、再成長の起点を明確にします。",
   },
   {
-    icon: "target",
+    icon: "strategy-win",
     title: "勝ち筋の設計",
     body: "市場・競合・自社の強みを踏まえ、実現性の高い戦略を設計します。",
   },
   {
-    icon: "users",
+    icon: "accompany",
     title: "実行の伴走",
     body: "計画の実行段階まで深く関与し、成果創出まで伴走します。",
   },
-] satisfies Array<{ icon: IconName; title: string; body: string }>;
+] satisfies Array<{ icon: AssetIconName; title: string; body: string }>;
 
 const services = [
   {
-    icon: "chart",
+    icon: "sales",
     title: "営業支援",
     body: "営業戦略の設計から組織強化、プロセス改善まで支援し、持続的な売上成長を実現します。",
     href: "/sales",
   },
   {
-    icon: "brain",
+    icon: "dx-ai",
     title: "DX・AI活用支援",
     body: "データとテクノロジーを活用し、業務プロセスの最適化と新たな価値創出を支援します。",
     href: "/ai-dx",
   },
   {
-    icon: "handshake",
+    icon: "alliance",
     title: "アライアンス戦略",
     body: "パートナーシップの構築・強化を通じて、事業のスケールと競争優位性の確立を支援します。",
     href: "/alliance",
   },
-] satisfies Array<{ icon: IconName; title: string; body: string; href: string }>;
+] satisfies Array<{ icon: AssetIconName; title: string; body: string; href: string }>;
 
 const flow = [
   {
-    icon: "file-search",
+    icon: "current-state",
     number: "01",
     title: "現状整理",
     body: "ヒアリングを通じて、現状と課題を整理します。",
   },
   {
-    icon: "target",
+    icon: "strategy-design",
     number: "02",
     title: "戦略設計",
     body: "最適な戦略と実行計画を設計します。",
   },
   {
-    icon: "users",
+    icon: "execution",
     number: "03",
     title: "実行支援",
     body: "改善・定着まで伴走します。",
   },
-] satisfies Array<{ icon: IconName; number: string; title: string; body: string }>;
+] satisfies Array<{ icon: AssetIconName; number: string; title: string; body: string }>;
 
 const strengths = [
   {
-    icon: "user",
+    icon: "owner-distance",
     title: "経営者に近い距離",
     body: "経営者の想いに寄り添い、信頼関係を築きながら本質的な課題解決に取り組みます。",
   },
   {
-    icon: "clipboard-check",
+    icon: "onsite",
     title: "現場実行まで支援",
     body: "戦略立案で終わらせず、現場に入り込み成果が出るまで徹底的に伴走します。",
   },
   {
-    icon: "trending-up",
+    icon: "long-term",
     title: "長期的な成長を重視",
     body: "短期的な成果だけでなく、持続的な企業価値向上に向けた基盤づくりを支援します。",
   },
-] satisfies Array<{ icon: IconName; title: string; body: string }>;
+] satisfies Array<{ icon: AssetIconName; title: string; body: string }>;
 
-function RoundIcon({ type, light = false }: { type: IconName; light?: boolean }) {
+function AssetIcon({ type, light = false, className = "" }: { type: AssetIconName; light?: boolean; className?: string }) {
   return (
-    <span className={`mx-auto flex h-[78px] w-[78px] items-center justify-center rounded-full border p-[18px] ${light ? "border-white/65 text-[#EAF0F7]" : "border-navy-900/25 text-navy-700"}`}>
-      <LucideLineIcon name={type} className="h-full w-full" />
+    <img
+      src={light ? `/icons-white/${type}.png` : `/icons/${type}.png`}
+      alt=""
+      className={`object-contain ${className}`}
+      aria-hidden="true"
+    />
+  );
+}
+
+function RoundIcon({ type, light = false }: { type: AssetIconName; light?: boolean }) {
+  return (
+    <span className={`mx-auto flex h-[78px] w-[78px] items-center justify-center rounded-full border p-[18px] ${light ? "border-white/65" : "border-navy-900/25"}`}>
+      <AssetIcon type={type} light={light} className="h-full w-full" />
     </span>
   );
 }
@@ -118,8 +142,8 @@ export default function Home() {
             </div>
           </div>
           <div className="relative -mt-2 h-[280px] sm:mt-0 sm:h-[370px] lg:h-[420px]">
-            <div className="absolute inset-[-10%_-10%_-6%_-7%] opacity-100">
-              <ArrowMotif variant="dark" />
+            <div className="absolute inset-[-4%_-6%_-2%_-2%] opacity-100">
+              <img src="/renascer-hero-r-new.png" alt="" className="h-full w-full object-contain" aria-hidden="true" />
             </div>
           </div>
         </div>
@@ -161,7 +185,7 @@ export default function Home() {
               <Link key={service.href} href={service.href} className="group grid gap-5 py-5 transition hover:bg-navy-50/70 sm:grid-cols-[130px_1fr_40px] sm:items-center sm:px-2">
                 <div className="flex justify-center">
                   <span className="flex h-[92px] w-[92px] items-center justify-center p-4 text-navy-700">
-                    <LucideLineIcon name={service.icon} className="h-full w-full" />
+                    <AssetIcon type={service.icon} className="h-full w-full" />
                   </span>
                 </div>
                 <div className="border-navy-900/20 text-center sm:border-l sm:pl-9 sm:text-left">
@@ -185,7 +209,7 @@ export default function Home() {
                   <div className="flex items-start justify-between gap-4">
                     <span className="font-serif text-[2rem] font-semibold tracking-[0.16em] text-navy-900">{item.number}</span>
                     <span className="h-12 w-12 text-navy-700">
-                      <LucideLineIcon name={item.icon} className="h-full w-full" />
+                      <AssetIcon type={item.icon} className="h-full w-full" />
                     </span>
                   </div>
                   <h3 className="mt-4 font-serif text-xl font-semibold tracking-[0.16em] text-navy-900">{item.title}</h3>
