@@ -17,7 +17,7 @@ export function Mark({ light = false }: { light?: boolean }) {
 export function BrandLogo({ light = false }: { light?: boolean }) {
   return (
     <Link href="/" className="inline-flex items-center gap-3" aria-label="RENASCER トップページ">
-      <img src="/renascer-logo.svg" alt="RENASCER レナセール" className="h-10 w-auto max-w-[150px] sm:h-11 sm:max-w-[190px]" />
+      <img src="/renascer-logo.svg" alt="RENASCER レナセール" className="h-11 w-auto max-w-[172px] sm:h-12 sm:max-w-[220px]" />
       {light ? <span className="sr-only">RENASCER レナセール</span> : null}
     </Link>
   );
