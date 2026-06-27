@@ -17,7 +17,7 @@ export function ButtonLink({ href, children, variant = "primary" }: { href: stri
       ? "bg-navy-900 text-white hover:bg-navy-700"
       : variant === "light"
         ? "bg-white text-navy-900 hover:bg-navy-50"
-        : "border border-navy-900/25 bg-white text-navy-900 hover:border-navy-900";
+        : "border border-white/55 bg-transparent text-white hover:bg-white hover:text-navy-950";
 
   return (
     <a href={href} className={`inline-flex h-12 min-w-40 items-center justify-center px-6 text-sm font-semibold transition ${className}`}>

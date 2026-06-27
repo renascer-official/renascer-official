@@ -3,7 +3,7 @@ import Link from "next/link";
 export function Mark({ light = false }: { light?: boolean }) {
   return (
     <span className="relative inline-flex h-12 w-16 shrink-0 items-center justify-center overflow-visible" aria-hidden="true">
-      <img src="/renascer-mark.png" alt="" className="h-12 w-auto object-contain" />
+      <img src="/renascer-mark.png" alt="" className={`h-12 w-auto object-contain ${light ? "brightness-0 invert" : ""}`} />
     </span>
   );
 }
