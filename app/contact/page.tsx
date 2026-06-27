@@ -14,9 +14,9 @@ export default function ContactPage() {
     <main>
       <section className="bg-navy-950 text-white">
         <div className="section-shell py-20 sm:py-28">
-          <p className="text-sm font-semibold tracking-[0.28em] text-white/55">CONTACT</p>
+          <p className="text-sm font-semibold tracking-[0.28em] text-white/50">CONTACT</p>
           <h1 className="mt-5 font-serif text-4xl tracking-[0.12em] sm:text-6xl">お問い合わせ</h1>
-          <p className="mt-8 max-w-2xl text-base leading-9 text-white/78">営業支援・AI活用・入札支援・事業開発について、まずはお気軽にご相談ください。</p>
+          <p className="mt-8 max-w-2xl text-base leading-9 text-white/75">営業支援・AI活用・入札支援・事業開発について、まずはお気軽にご相談ください。</p>
         </div>
       </section>
 

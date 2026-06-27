@@ -8,7 +8,7 @@ export const site = {
 
 export const navigation = [
   { label: "支援領域", href: "/#services" },
-  { label: "事例", href: "/#cases" },
+  { label: "実績", href: "/#cases" },
   { label: "会社情報", href: "/#about" },
   { label: "お問い合わせ", href: "/contact" },
 ];

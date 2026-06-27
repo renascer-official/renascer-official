@@ -31,9 +31,9 @@ export default async function ServiceDetail({ params }: Props) {
     <main>
       <section className="bg-navy-950 text-white">
         <div className="section-shell py-20 sm:py-28">
-          <p className="text-sm font-semibold tracking-[0.28em] text-white/55">SERVICE</p>
+          <p className="text-sm font-semibold tracking-[0.28em] text-white/50">SERVICE</p>
           <h1 className="mt-5 font-serif text-4xl tracking-[0.12em] sm:text-6xl">{page.title}</h1>
-          <p className="mt-8 max-w-2xl text-base leading-9 text-white/78">{page.lead}</p>
+          <p className="mt-8 max-w-2xl text-base leading-9 text-white/75">{page.lead}</p>
           <div className="mt-9">
             <ButtonLink href="/contact" variant="light">この領域で相談する</ButtonLink>
           </div>
@@ -45,7 +45,7 @@ export default async function ServiceDetail({ params }: Props) {
           <SectionHeading title="よくある課題" body={page.issueTitle} />
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {page.issues.map((issue) => (
-              <div key={issue} className="border border-navy-900/10 bg-white p-6 text-sm leading-8 text-ink/72 shadow-sm">
+              <div key={issue} className="border border-navy-900/10 bg-white p-6 text-sm leading-8 text-ink/70 shadow-sm">
                 {issue}
               </div>
             ))}
@@ -84,7 +84,7 @@ export default async function ServiceDetail({ params }: Props) {
       <section className="bg-navy-950 py-16 text-center text-white">
         <div className="section-shell">
           <h2 className="font-serif text-3xl tracking-[0.12em]">まずは現状をお聞かせください。</h2>
-          <p className="mt-5 text-sm leading-8 text-white/72">課題や状況を丁寧に伺い、再成長に向けた最適な進め方をご提案します。</p>
+          <p className="mt-5 text-sm leading-8 text-white/70">課題や状況を丁寧に伺い、再成長に向けた最適な進め方をご提案します。</p>
           <div className="mt-8">
             <ButtonLink href="/contact" variant="light">お問い合わせへ</ButtonLink>
           </div>
