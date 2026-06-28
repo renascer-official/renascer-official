@@ -36,7 +36,7 @@ export function ContactForm() {
       setState("success");
     } catch {
       setState("error");
-      setErrorMessage("送信できませんでした。時間をおいて再度お試しください。");
+      setErrorMessage("送信できませんでした。");
     }
   }
 

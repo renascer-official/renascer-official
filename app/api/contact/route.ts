@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { sendSmtpMail } from "@/lib/smtp";
 
 export const runtime = "nodejs";
 
@@ -31,12 +30,16 @@ export async function POST(request: Request) {
     const email = clean(payload.email);
     const category = clean(payload.category);
     const message = clean(payload.message);
+    const apiKey = process.env.RESEND_API_KEY;
 
     if (!name || !emailPattern.test(email) || !category || !message) {
       return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
 
-    const to = process.env.CONTACT_TO_EMAIL || "info@renascer.jp";
+    if (!apiKey) {
+      throw new Error("RESEND_API_KEY is missing");
+    }
+
     const subject = `【RENASCER】お問い合わせ：${category}`;
     const text = [
       "RENASCER公式サイトからお問い合わせがありました。",
@@ -50,14 +53,30 @@ export async function POST(request: Request) {
       message,
     ].join("\n");
 
-    await sendSmtpMail({
-      to,
-      replyTo: email,
-      subject,
-      text,
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "RENASCER <no-reply@renascer.jp>",
+        to: ["info@renascer.jp"],
+        reply_to: email,
+        subject,
+        text,
+      }),
     });
 
-    return NextResponse.json({ ok: true });
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Resend API error: ${response.status} ${errorText}`);
+    }
+
+    return NextResponse.json({
+      ok: true,
+      subject,
+    });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: "Failed to send" }, { status: 500 });
