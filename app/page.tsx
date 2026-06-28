@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Fragment } from "react";
-import { ArrowMotif } from "@/components/ArrowMotif";
+import { FileSearch, Rocket, Target, TrendingUp, type LucideIcon } from "lucide-react";
 import { ButtonLink, SectionHeading } from "@/components/Section";
 
 type AssetIconName =
@@ -58,24 +58,24 @@ const services = [
 
 const flow = [
   {
-    icon: "file-search",
+    Icon: FileSearch,
     number: "01",
     title: "現状整理",
     body: "ヒアリングを通じて、現状と課題を整理します。",
   },
   {
-    icon: "target",
+    Icon: Target,
     number: "02",
     title: "戦略設計",
     body: "最適な戦略と実行計画を設計します。",
   },
   {
-    icon: "rocket",
+    Icon: Rocket,
     number: "03",
     title: "実行支援",
     body: "改善・定着まで伴走します。",
   },
-] satisfies Array<{ icon: FlowIconName; number: string; title: string; body: string }>;
+] satisfies Array<{ Icon: LucideIcon; number: string; title: string; body: string }>;
 
 const strengths = [
   {
@@ -89,11 +89,11 @@ const strengths = [
     body: "戦略立案で終わらせず、現場に入り込み成果が出るまで徹底的に伴走します。",
   },
   {
-    icon: "long-term",
+    icon: "trending-up",
     title: "長期的な成長を重視",
     body: "短期的な成果だけでなく、持続的な企業価値向上に向けた基盤づくりを支援します。",
   },
-] satisfies Array<{ icon: AssetIconName; title: string; body: string }>;
+] satisfies Array<{ icon: AssetIconName | "trending-up"; title: string; body: string }>;
 
 function AssetIcon({ type, light = false, className = "" }: { type: AssetIconName; light?: boolean; className?: string }) {
   return (
@@ -114,46 +114,11 @@ function RoundIcon({ type, light = false }: { type: AssetIconName; light?: boole
   );
 }
 
-type FlowIconName = "file-search" | "target" | "rocket";
-
-function FlowIcon({ type }: { type: FlowIconName }) {
-  const common = {
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 1.9,
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
-  };
-
+function LucideCircleIcon({ Icon, light = false }: { Icon: LucideIcon; light?: boolean }) {
   return (
-    <svg viewBox="0 0 64 64" className="h-full w-full" aria-hidden="true">
-      {type === "file-search" ? (
-        <>
-          <path d="M20 10h18l10 10v19" {...common} />
-          <path d="M38 10v11h10" {...common} />
-          <path d="M20 10v44h17" {...common} />
-          <path d="M27 29h13M27 36h9" {...common} />
-          <circle cx="43" cy="44" r="8" {...common} />
-          <path d="m49 50 6 6" {...common} />
-        </>
-      ) : null}
-      {type === "target" ? (
-        <>
-          <circle cx="31" cy="34" r="18" {...common} />
-          <circle cx="31" cy="34" r="10" {...common} />
-          <circle cx="31" cy="34" r="3" {...common} />
-          <path d="M43 22 55 10M49 10h6v6" {...common} />
-        </>
-      ) : null}
-      {type === "rocket" ? (
-        <>
-          <path d="M37 13c7-3 12-3 15-1 2 3 2 8-1 15L37 41 23 27z" {...common} />
-          <path d="M23 27 14 30l9 5M37 41l-3 9-5-9" {...common} />
-          <circle cx="42" cy="22" r="4" {...common} />
-          <path d="M21 43c-4 1-7 4-8 8 4-1 7-4 8-8z" {...common} />
-        </>
-      ) : null}
-    </svg>
+    <span className={`mx-auto flex h-[78px] w-[78px] items-center justify-center rounded-full border ${light ? "border-white/65 text-[#EAF0F7]" : "border-navy-900/25 text-navy-700"}`}>
+      <Icon className="h-[42px] w-[42px]" strokeWidth={1.9} aria-hidden="true" />
+    </span>
   );
 }
 
@@ -252,7 +217,7 @@ export default function Home() {
                   <div className="flex items-start justify-between gap-4">
                     <span className="font-serif text-[2rem] font-semibold tracking-[0.16em] text-navy-900">{item.number}</span>
                     <span className="h-12 w-12 text-navy-700">
-                      <FlowIcon type={item.icon} />
+                      <item.Icon className="h-full w-full" strokeWidth={1.9} aria-hidden="true" />
                     </span>
                   </div>
                   <h3 className="mt-4 font-serif text-xl font-semibold tracking-[0.16em] text-navy-900">{item.title}</h3>
@@ -271,7 +236,7 @@ export default function Home() {
           <div className="mx-auto mt-7 grid max-w-5xl gap-8 md:grid-cols-3 md:gap-0">
             {strengths.map((item, index) => (
               <div key={item.title} className={`px-9 text-center ${index > 0 ? "border-white/35 md:border-l" : ""}`}>
-                <RoundIcon type={item.icon} light />
+                {item.icon === "trending-up" ? <LucideCircleIcon Icon={TrendingUp} light /> : <RoundIcon type={item.icon} light />}
                 <h3 className="mt-5 font-serif text-[1.45rem] tracking-[0.18em]">{item.title}</h3>
                 <p className="mt-4 text-sm font-medium leading-7 text-white/75">{item.body}</p>
               </div>
@@ -281,9 +246,6 @@ export default function Home() {
       </section>
 
       <section className="relative overflow-hidden bg-white py-8 text-center sm:py-10">
-        <div className="absolute bottom-[-210px] right-[-150px] h-[430px] w-[650px] opacity-55">
-          <ArrowMotif />
-        </div>
         <div className="section-shell relative z-10">
           <h2 className="font-serif text-3xl leading-relaxed tracking-[0.18em] text-navy-900">まずは現状をお聞かせください。</h2>
           <p className="mt-3 text-sm font-medium leading-8 text-navy-900/75">貴社の課題やご状況を丁寧に伺い、再成長に向けた最適なアプローチをご提案します。</p>
